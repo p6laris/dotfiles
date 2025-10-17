@@ -11,6 +11,7 @@ require("oil").setup({
   },
   use_default_keymaps = false,
   show_hidden = true,
+  skip_confirm_for_simple_edits = true,
 })
 
 vim.keymap.set("n", "<leader>m", ":Oil<CR>", { noremap = true, silent = true, desc = "Open Oil.nvim" })
