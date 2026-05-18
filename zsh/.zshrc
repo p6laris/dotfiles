@@ -10,6 +10,17 @@ export EDITOR="code -w"
 export PATH="$PATH:$HOME/.config/flutter"
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH
+
+# ---------------------
+# 🔑 Secrets (Local Only)
+# ---------------------
+[ -f "$HOME/.zsh_local" ] && source "$HOME/.zsh_local"
+export ANTHROPIC_BASE_URL="https://openrouter.ai/api"
+export ANTHROPIC_API_KEY="" # Important: Must be explicitly empty
+
+
+export CXX=/usr/bin/clang++
+export CC=/usr/bin/clang
 # ---------------------
 # 🕘 History Settings
 # ---------------------
@@ -78,3 +89,11 @@ function y() {
 	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
 	rm -f -- "$tmp"
 }
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PATH="$HOME/.local/bin:$PATH"
+
+# opencode
+export PATH=/home/p0laris/.opencode/bin:$PATH
