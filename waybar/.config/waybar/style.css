@@ -1,127 +1,139 @@
-@import "mocha.css"; 
+@import "mocha.css";
 
 * {
-    font-family: "MesloLGS Nerd Font Mono Bold";
-    font-size: 16px;
-    min-height: 0;
+    font-family: "MesloLGS Nerd Font Mono", sans-serif;
+    font-size: 14px;
     font-weight: bold;
+    border: none;
+    border-radius: 0;
+    min-height: 0;
 }
 
 window#waybar {
-    background: transparent;
-    background-color: @crust;
-    color: @overlay0;
-    transition-property: background-color;
-    transition-duration: 0.1s;
-    border-bottom: 1px solid @overlay1;
+    background-color: @mantle; /* Solid dark bar */
+    border-bottom: 1px solid @crust;
 }
 
-#window {
-    margin: 8px;
-    padding-left: 8;
-    padding-right: 8;
-}
-
-button {
-    box-shadow: inset 0 -3px transparent;
-    border: none;
-    border-radius: 0;
-}
-
-button:hover {
-    background: inherit;
-    color: @mauve;
-    border-top: 2px solid @mauve;
-}
-
-#workspaces button {
-    padding: 0 4px;
-}
-
-#workspaces button.focused {
-    background-color: rgba(0, 0, 0, 0.3);
-    color: @rosewater;
-    border-top: 2px solid @rosewater;
-}
-
-#workspaces button.active {
-    background-color: rgba(0, 0, 0, 0.3);
-    color: @mauve;
-    border-top: 2px solid @mauve;
-}
-
-#workspaces button.urgent {
-    background-color: #eb4d4b;
-}
-
-#pulseaudio,
+/* Every single module gets its own clean, highly rounded "chip" */
+#window,
 #clock,
-#battery,
-#cpu,
-#memory,
-#disk,
-#temperature,
-#backlight,
-#wireplumber,
-#tray,
 #network,
-#mode,
-#scratchpad {
-  margin-top: 2px;
-  margin-bottom: 2px;
-  margin-left: 4px;
-  margin-right: 4px;
-  padding-left: 4px;
-  padding-right: 4px;
+#pulseaudio,
+#battery,
+#tray {
+    background-color: @base;
+    border: 1px solid @surface0;
+    border-radius: 100px; /* Perfect pill shape */
+    padding: 2px 16px;
+    margin: 6px 4px; /* Space between the chips and the bar edges */
+    color: @text;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
-#clock {
-    color: @maroon;
-    border-bottom: 2px solid @maroon;
+/* Workspaces container */
+#workspaces {
+    background-color: transparent;
+    padding: 0;
+    margin: 6px 4px;
 }
 
-#clock.date {
+/* Individual workspace buttons as chips */
+#workspaces button {
+    background-color: @base;
+    border: 1px solid @surface0;
+    border-radius: 100px;
+    padding: 2px 16px; /* Uniform padding */
+    margin: 0 4px;
+    color: @subtext0;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+#workspaces button:hover {
+    background-color: @surface1;
+    border: 1px solid @surface1;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     color: @mauve;
-    border-bottom: 2px solid @mauve;
+    text-shadow: 0 0 5px rgba(203, 166, 247, 0.4);
 }
 
-#pulseaudio {
-    color: @blue;
-    border-bottom: 2px solid @blue;
+/* Empty Workspaces (Inactive) */
+#workspaces button.empty {
+    background-color: transparent;
+    border: 1px dashed @surface1;
+    box-shadow: none;
+    color: @overlay0;
 }
 
-#network {
-    color: @yellow;
-    border-bottom: 2px solid @yellow;
+#workspaces button.empty:hover {
+    background-color: @surface0;
+    border: 1px solid @surface2;
+    color: @mauve;
+    text-shadow: 0 0 5px rgba(203, 166, 247, 0.4);
 }
 
-#idle_inhibitor {
-    margin-right: 12px;
-    color: #7cb342;
+/* Active Workspaces */
+#workspaces button.active {
+    background-color: @mauve;
+    border: 1px solid @mauve;
+    color: @crust;
+    box-shadow: 0 0 10px 0 rgba(203, 166, 247, 0.4); /* Brighter Glow effect */
 }
 
-#idle_inhibitor.activated {
-    color: @red;
+/* Active BUT Empty Workspace */
+#workspaces button.active.empty {
+    background-color: transparent;
+    border: 1px solid @mauve;
+    color: @mauve;
+    box-shadow: none;
 }
 
-#battery {
-    color: @green;
-    border-bottom: 2px solid @green;
+/* Hover effects for the chips */
+#clock:hover,
+#network:hover,
+#pulseaudio:hover,
+#battery:hover,
+#window:hover,
+#tray:hover {
+    background-color: @surface1;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
 }
 
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left>widget:first-child>#workspaces {
-    margin-left: 0;
+/* Individual text colors and colored borders on hover */
+#clock { color: @rosewater; }
+#clock:hover { border: 1px solid @rosewater; }
+
+#network { color: @sapphire; }
+#network:hover { border: 1px solid @sapphire; }
+
+#pulseaudio { color: @peach; }
+#pulseaudio:hover { border: 1px solid @peach; }
+
+#battery { color: @green; }
+#battery:hover { border: 1px solid @green; }
+
+#window { color: @lavender; }
+#window:hover { border: 1px solid @lavender; }
+
+#window.empty {
+    background-color: transparent;
+    border: 1px dashed @surface1;
+    box-shadow: none;
+    color: @overlay0;
 }
 
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right>widget:last-child>#workspaces {
-    margin-right: 0;
+#battery.critical:not(.charging) {
+    background-color: @red;
+    color: @crust;
+    animation: blink 1s infinite alternate;
 }
 
-#custom-vpn {
-    color: @lavender;
-    border-radius: 15px;
-    padding-left: 6px;
-    padding-right: 6px;
+@keyframes blink {
+    0% { background-color: @red; color: @crust; }
+    100% { background-color: @base; color: @red; }
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
 }

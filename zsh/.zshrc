@@ -10,14 +10,9 @@ export EDITOR="code -w"
 export PATH="$PATH:$HOME/.config/flutter"
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH
-
-# ---------------------
-# 🔑 Secrets (Local Only)
-# ---------------------
-[ -f "$HOME/.zsh_local" ] && source "$HOME/.zsh_local"
-export ANTHROPIC_BASE_URL="https://openrouter.ai/api"
-export ANTHROPIC_API_KEY="" # Important: Must be explicitly empty
-
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$PATH:$HOME/.dotnet/tools"
+export DOTNET_CLI_CUSTOM_DOTNET_BUILD_PROPERTIES="GlobalAnalyzerConfigFiles=$HOME/.dotnet/config/global.globalconfig"
 
 export CXX=/usr/bin/clang++
 export CC=/usr/bin/clang
@@ -97,3 +92,7 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # opencode
 export PATH=/home/p0laris/.opencode/bin:$PATH
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/p0laris/.local/bin:$PATH"
