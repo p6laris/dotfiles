@@ -392,4 +392,8 @@ hl.bind(mainMod .. " + " .. "s", hl.dsp.exec_cmd("hyprshot -m window"))
 hl.on("hyprland.start", function()
     hl.exec_cmd("waybar & hyprpaper & kitty & swaync")
 end)
-hl.layerrule("animation none, wofi")
+hl.config({
+    layerrule = {
+        "animation none, wofi"
+    }
+})
