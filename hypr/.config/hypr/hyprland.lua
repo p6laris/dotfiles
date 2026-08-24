@@ -155,7 +155,7 @@ hl.config({
 
 hl.config({
     animations = {
-        enabled = { true, "please:)" },
+        enabled = true,
         -- Default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
     },
 })
@@ -224,10 +224,10 @@ hl.config({
             natural_scroll = true,
         },
     },
-    gestures = {
-        workspace_swipe = true,
-        workspace_swipe_fingers = 4,
-    },
+    -- gestures = {
+    --    workspace_swipe = true,
+    --    workspace_swipe_fingers = 4,
+    -- },
 })
 
 -- Example per-device config
@@ -334,11 +334,11 @@ hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. 0, hl.dsp.window.move({ workspac
 hl.bind(mainMod .. " + " .. "R", hl.dsp.submap("resize"))
 
 hl.define_submap("resize", function()
-    hl.bind("", "l", "resizeactive", "10 0", { flags = "e" })
-    hl.bind("", "h", "resizeactive", "-10 0", { flags = "e" })
-    hl.bind("", "k", "resizeactive", "0 -10", { flags = "e" })
-    hl.bind("", "j", "resizeactive", "0 10", { flags = "e" })
-    hl.bind("", "Return", hl.dsp.submap("reset"))
+    hl.bind("l", hl.dsp.exec_cmd("hyprctl dispatch resizeactive 10 0"), { flags = "e" })
+    hl.bind("h", hl.dsp.exec_cmd("hyprctl dispatch resizeactive -10 0"), { flags = "e" })
+    hl.bind("k", hl.dsp.exec_cmd("hyprctl dispatch resizeactive 0 -10"), { flags = "e" })
+    hl.bind("j", hl.dsp.exec_cmd("hyprctl dispatch resizeactive 0 10"), { flags = "e" })
+    hl.bind("Return", hl.dsp.submap("reset"))
 end)
 
 
