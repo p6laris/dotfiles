@@ -87,7 +87,6 @@ window {
     border: 1px dashed @surface1;
     padding: 10px 20px;
     margin: 6px 0px;
-    transition: all 0.05s ease-out; /* Blazing fast 50ms transition! */
 }
 
 #entry #text {
